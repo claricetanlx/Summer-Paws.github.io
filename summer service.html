@@ -1,0 +1,611 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Services - Summer Paws</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Services" />
+    <meta name="author" content="Summer Paws Team (CT & WSK)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --background: #fefefe;
+            --foreground: #334155;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --accent: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			overflow: hidden; 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-logo-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; 
+		}
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            padding: 0.5rem;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .service-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--muted-foreground);
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            text-align: center;
+            color: #cbd5e1;
+        }
+		
+		/* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">
+				<img src="photo/summer paws logo.png" alt="summer paws logo"/>
+				</div>
+                <span class="nav-logo-text">Summer Paws</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="summer service.html" class="active">Services</a></li>
+                <li><a href="summer booking.html">Booking</a></li>
+                <li><a href="summer shop.html">Shop</a></li>
+                <li><a href="summer care guide.html">Care Guide</a></li>
+                <li><a href="summer about.html">About</a></li>
+                <li><a href="summer member.html">Members</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="summer checkout.html" class="nav-icon">
+                    🛒
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </a>
+                <a href="summer profile.html" class="nav-icon">👤</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Professional grooming services designed to keep your pet healthy, happy, and looking their best</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="photo/service/professional bathing.png" alt="Professional Bathing" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">🛁</div>
+                            <h3 class="service-title">Professional Bathing</h3>
+                        </div>
+                        <div class="service-price">From RM35</div>
+                        <p class="service-description">Complete bathing service with premium shampoos and conditioners tailored to your pet's coat type and skin needs.</p>
+                        <ul class="service-features">
+                            <li>Pre-bath brushing and detangling</li>
+                            <li>Gentle, high-quality shampoo</li>
+                            <li>Thorough rinse and conditioning</li>
+                            <li>Blow-dry and final brush out</li>
+                            <li>Nail trimming included</li>
+                        </ul>
+                        <a href="summer booking.html" class="btn-primary">Book This Service</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="photo/service/beauty trimming.png" alt="Beauty Trimming" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">✂️</div>
+                            <h3 class="service-title">Beauty Trimming</h3>
+                        </div>
+                        <div class="service-price">From RM45</div>
+                        <p class="service-description">Expert grooming and styling services to keep your pet looking their absolute best with breed-specific cuts.</p>
+                        <ul class="service-features">
+                            <li>Breed-specific styling</li>
+                            <li>Full body trimming</li>
+                            <li>Face and sanitary trimming</li>
+                            <li>Professional scissoring</li>
+                            <li>Final styling and photos</li>
+                        </ul>
+                        <a href="summer booking.html" class="btn-primary">Book This Service</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="photo/service/nail care.png" alt="Nail Care" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">💅</div>
+                            <h3 class="service-title">Nail Care</h3>
+                        </div>
+                        <div class="service-price">From RM15</div>
+                        <p class="service-description">Professional nail trimming and paw care to keep your pet comfortable and prevent overgrowth issues.</p>
+                        <ul class="service-features">
+                            <li>Careful nail trimming</li>
+                            <li>Quick identification</li>
+                            <li>Paw pad inspection</li>
+                            <li>Optional nail filing</li>
+                            <li>Gentle handling techniques</li>
+                        </ul>
+                        <a href="summer booking.html" class="btn-primary">Book This Service</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="photo/service/spa treatment.png" alt="SPA Treatment" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">🧖‍♀️</div>
+                            <h3 class="service-title">SPA Treatment</h3>
+                        </div>
+                        <div class="service-price">From RM65</div>
+                        <p class="service-description">Luxurious spa experience including hydrotherapy, aromatherapy, and relaxation treatments for ultimate pampering.</p>
+                        <ul class="service-features">
+                            <li>Hydrotherapy session</li>
+                            <li>Aromatherapy treatment</li>
+                            <li>Deep conditioning masks</li>
+                            <li>Relaxing massage</li>
+                            <li>Premium finishing products</li>
+                        </ul>
+                        <a href="summer booking.html" class="btn-primary">Book This Service</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="photo/service/full grooming package.jpg" alt="Full Grooming Package" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">⭐</div>
+                            <h3 class="service-title">Full Grooming Package</h3>
+                        </div>
+                        <div class="service-price">From RM85</div>
+                        <p class="service-description">Complete grooming experience combining all our services for the ultimate pet care package.</p>
+                        <ul class="service-features">
+                            <li>Professional bathing</li>
+                            <li>Complete styling & trimming</li>
+                            <li>Nail trimming & paw care</li>
+                            <li>Ear cleaning</li>
+                            <li>Finishing touches & photos</li>
+                        </ul>
+                        <a href="summer booking.html" class="btn-primary">Book This Service</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="photo/service/add-on service.jpg" alt="Add-On Services" class="service-image">
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-icon">➕</div>
+                            <h3 class="service-title">Add-On Services</h3>
+                        </div>
+                        <div class="service-price">From RM10</div>
+                        <p class="service-description">Additional services to complement your pet's grooming experience and address specific needs.</p>
+                        <ul class="service-features">
+                            <li>Teeth brushing (RM10)</li>
+                            <li>Ear cleaning (RM8)</li>
+                            <li>Flea & tick treatment (RM15)</li>
+                            <li>De-shedding treatment (RM20)</li>
+                            <li>Cologne & bow ties (RM5)</li>
+                        </ul><br>
+                        <a href="summer booking.html" class="btn-primary">Add to Booking</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="summer booking.html" class="btn-primary" style="width: auto; padding: 1rem 2rem;">Book Your Appointment Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Summer Paws</h3>
+                    <p>Professional pet grooming services with love and care for your furry friends.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="service.html">Professional Bathing</a></li>
+                        <li><a href="service.html">Beauty Trimming</a></li>
+                        <li><a href="service.html">Nail Care</a></li>
+                        <li><a href="service.html">SPA Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="care guide.html">Care Guide</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Pet Care Avenue, Dog City, DC 12345</p>
+                    <p>📞 012 123-4567</p>
+                    <p>✉️ info@summerpaws.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Summer Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+	
+	<!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-btn" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+    </div>
+
+    <script>
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Initialize cart badge on page load
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
+</body>
+</html>

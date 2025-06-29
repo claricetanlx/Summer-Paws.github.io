@@ -1,0 +1,1013 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Membership - Summer Paws</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Membership" />
+    <meta name="author" content="Summer Paws Team (CT & WSK)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --background: #fefefe;
+            --foreground: #334155;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --accent: #f59e0b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			overflow: hidden; 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-logo-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; 
+		}
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            padding: 0.5rem;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Plans Section */
+        .plans-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .plan-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(14, 165, 233, 0.1) 100%);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-period {
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .plan-features li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 1.5rem;
+            text-align: center;
+        }
+
+        .btn-plan {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-plan.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-plan.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-plan.secondary {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-plan.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 5rem 0;
+            background: var(--muted);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .benefit-description {
+            color: var(--muted-foreground);
+        }
+		
+		/* Auth Forms */
+        .auth-container {
+            background: var(--muted);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-container a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: lightblue;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+		
+		.special-offer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+
+        .special-offer h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .special-offer p {
+            margin-bottom: 1rem;
+        }
+
+        .offer-disclaimer {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+		
+		.hidden {
+            display: none;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--foreground);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 0 1.5rem;
+            color: var(--muted-foreground);
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle.open {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            text-align: center;
+            color: #cbd5e1;
+        }
+		
+		/* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">
+				<img src="photo/summer paws logo.png" alt="summer paws logo"/>
+				</div>
+                <span class="nav-logo-text">Summer Paws</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="summer service.html">Services</a></li>
+                <li><a href="summer booking.html">Booking</a></li>
+                <li><a href="summer shop.html">Shop</a></li>
+                <li><a href="summer care guide.html">Care Guide</a></li>
+                <li><a href="summer about.html">About</a></li>
+                <li><a href="summer member.html" class="active">Members</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="summer checkout.html" class="nav-icon">
+                    🛒
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </a>
+                <a href="summer profile.html" class="nav-icon">👤</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Membership Plans</h1>
+            <p>Join Summer Paws and save on regular grooming services while ensuring your pet always looks and feels their best</p>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Plan</h2>
+                <p>Flexible membership options designed to fit your pet's needs and your budget</p>
+            </div>
+            
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-name">Basic Care</div>
+                    <div class="plan-price">RM29<span style="font-size: 1rem;">/month</span></div>
+                    <div class="plan-period">Perfect for occasional grooming</div>
+                    <ul class="plan-features">
+                        <li>15% discount on all services</li>
+                        <li>1 complimentary nail trim per month</li>
+                        <li>Priority booking available</li>
+                        <li>Free grooming consultation</li>
+                        <li>Email care tips and reminders</li>
+                    </ul>
+                    <a href="profile.html" class="btn-plan secondary">Get Started</a>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-name">Premium Care</div>
+                    <div class="plan-price">RM49<span style="font-size: 1rem;">/month</span></div>
+                    <div class="plan-period">Great for regular grooming needs</div>
+                    <ul class="plan-features">
+                        <li>25% discount on all services</li>
+                        <li>2 complimentary services per month</li>
+                        <li>Free monthly nail trim & ear cleaning</li>
+                        <li>Priority booking guaranteed</li>
+                        <li>Personalized care plan</li>
+                        <li>10% off retail products</li>
+                        <li>Emergency grooming support</li>
+                    </ul>
+                    <a href="profile.html" class="btn-plan primary">Get Started</a>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-name">VIP Care</div>
+                    <div class="plan-price">RM79<span style="font-size: 1rem;">/month</span></div>
+                    <div class="plan-period">Ultimate care for pampered pets</div>
+                    <ul class="plan-features">
+                        <li>35% discount on all services</li>
+                        <li>Unlimited basic services</li>
+                        <li>Monthly full grooming session</li>
+                        <li>VIP priority booking</li>
+                        <li>Personal groomer assignment</li>
+                        <li>20% off retail products</li>
+                        <li>Home pickup & delivery</li>
+                        <li>24/7 grooming support</li>
+                    </ul>
+                    <a href="profile.html" class="btn-plan secondary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Membership Benefits</h2>
+                <p>Why thousands of pet parents choose Summer Paws membership</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Save Money</h3>
+                    <p class="benefit-description">Enjoy significant discounts on all services and products, with savings that grow with higher-tier plans.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📅</div>
+                    <h3 class="benefit-title">Priority Booking</h3>
+                    <p class="benefit-description">Skip the wait with guaranteed priority booking and flexible scheduling options.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3 class="benefit-title">Premium Services</h3>
+                    <p class="benefit-description">Access to exclusive services and treatments not available to regular customers.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍⚕️</div>
+                    <h3 class="benefit-title">Personalized Care</h3>
+                    <p class="benefit-description">Custom care plans tailored to your pet's specific needs, breed, and health requirements.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚚</div>
+                    <h3 class="benefit-title">Convenience</h3>
+                    <p class="benefit-description">VIP members enjoy home pickup and delivery services for ultimate convenience.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📞</div>
+                    <h3 class="benefit-title">Support</h3>
+                    <p class="benefit-description">Access to grooming experts for advice, emergency support, and care guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Auth Content -->
+    <section class="main-content" id="authContent">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Login/Signup Forms -->
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" onclick="switchTab('login')">Sign In</div>
+                        <div class="auth-tab" onclick="switchTab('signup')">Sign Up</div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm">
+                        <h2 style="margin-bottom: 1.5rem;">Welcome Back!</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" placeholder="••••••••" required>
+                        </div>
+                        
+                        <div class="auth-actions">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" onclick="login(event)">Sign In</button>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form id="signupForm" class="hidden">
+                        <h2 style="margin-bottom: 1.5rem;">Join Our Community!</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-input" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-input" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-input" placeholder="(555) 123-4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" placeholder="••••••••" required>
+                        </div>
+                        
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </form>
+                </div>
+				
+				<div class="special-offer">
+                        <h3>Special Offer for New Members!</h3>
+                        <p>Sign up today and get 20% off your first grooming service plus 100 bonus points.</p>
+                        <p class="offer-disclaimer">*Valid for new members only. Cannot be combined with other offers.</p>
+                    </div>
+                </div>
+			</div>
+        </div>
+	</section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our membership program</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How do I cancel my membership?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        You can cancel your membership at any time with 30 days notice. Simply contact us or manage your subscription through your member portal. No cancellation fees apply.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Can I change my membership plan?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! You can upgrade or downgrade your membership plan at any time. Changes take effect on your next billing cycle, and we'll prorate any differences.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What happens to unused services?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Unused services from your monthly allocation roll over for up to 3 months, giving you flexibility to use them when you need them most.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Is there a contract or commitment?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        No long-term contracts required! Our memberships are month-to-month, giving you the flexibility to adjust or cancel as needed.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Can I use my membership for multiple pets?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Your membership benefits apply to all pets in your household. Additional pets receive the same discount rates and priority booking privileges.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Summer Paws</h3>
+                    <p>Professional pet grooming services with love and care for your furry friends.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="service.html">Professional Bathing</a></li>
+                        <li><a href="service.html">Beauty Trimming</a></li>
+                        <li><a href="service.html">Nail Care</a></li>
+                        <li><a href="service.html">SPA Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="care guide.html">Care Guide</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Pet Care Avenue, Dog City, DC 12345</p>
+                    <p>📞 012 123-4567</p>
+                    <p>✉️ info@summerpaws.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Summer Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+	
+	<!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-btn" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+    </div>
+
+    <script>
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const toggle = button.querySelector('.faq-toggle');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                if (ans !== answer) {
+                    ans.classList.remove('show');
+                }
+            });
+            
+            document.querySelectorAll('.faq-toggle').forEach(tog => {
+                if (tog !== toggle) {
+                    tog.classList.remove('open');
+                    tog.textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('show');
+            toggle.classList.toggle('open');
+            toggle.textContent = toggle.classList.contains('open') ? '×' : '+';
+        }
+
+        // Initialize cart badge on page load
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+		
+		function switchTab(tab) {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'login') {
+                tabs[0].classList.add('active');
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            } else {
+                tabs[1].classList.add('active');
+                signupForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

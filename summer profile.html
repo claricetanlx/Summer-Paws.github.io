@@ -1,0 +1,880 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>My Profile - Summer Paws</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Profile" />
+    <meta name="author" content="Summer Paws Team (CT & WSK)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --background: #fefefe;
+            --foreground: #334155;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --accent: #f59e0b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			overflow: hidden; 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-logo-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; 
+		}
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            padding: 0.5rem;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            margin-top: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 3rem 0;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 2rem;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-avatar {
+            position: relative;
+        }
+
+        .avatar-image {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 0.5rem;
+            background: #bfdbfe;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-btn {
+            position: absolute;
+            bottom: -0.25rem;
+            right: -0.25rem;
+            background: white;
+            border: none;
+            padding: 0.375rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .camera-btn:hover {
+            background: #f9fafb;
+        }
+
+        .profile-details {
+            flex: 1;
+        }
+
+        .profile-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-name h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .edit-btn {
+            background: none;
+            border: none;
+            padding: 0.25rem;
+            cursor: pointer;
+            color: #6b7280;
+            transition: color 0.3s;
+        }
+
+        .edit-btn:hover {
+            color: #3b82f6;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            font-size: 0.875rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #374151;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            padding: 2rem;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Activity List */
+        .activity-list {
+            space-y: 0;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .activity-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #dbeafe;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+        }
+
+        .activity-info h4 {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-info p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .activity-price {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .view-history-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .view-history-btn:hover {
+            background: #2563eb;
+        }
+
+        /* Settings Form */
+        .settings-form {
+            max-width: 600px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 6rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-secondary {
+            background: none;
+            color: #374151;
+            border: 2px solid #d1d5db;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #d1d5db;
+        }
+		
+		/* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.125rem;
+            }
+
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .profile-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">
+				<img src="photo/summer paws logo.png" alt="summer paws logo"/>
+				</div>
+                <span class="nav-logo-text">Summer Paws</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="summer service.html">Services</a></li>
+                <li><a href="summer booking.html">Booking</a></li>
+                <li><a href="summer shop.html">Shop</a></li>
+                <li><a href="summer care guide.html">Care Guide</a></li>
+                <li><a href="summer about.html">About</a></li>
+                <li><a href="summer member.html">Members</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="summer checkout.html" class="nav-icon">
+                    🛒
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </a>
+                <a href="summer profile.html" class="nav-icon">👤</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>My Profile</h1>
+            <p>Manage your pet care information</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-card">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <div class="avatar-image">
+                                <img src="photo/profile summer.jpg" alt="Summer Jan">
+                            </div>
+                            <button class="camera-btn">📷</button>
+                        </div>
+                        <div class="profile-details">
+                            <div class="profile-name">
+                                <h2>Summer Tan</h2>
+                                <button class="edit-btn">✏️</button>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Breed:</div>
+                                    <div class="stat-value">Shih-Poo</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Age:</div>
+                                    <div class="stat-value">8 years</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Weight:</div>
+                                    <div class="stat-value">4.1 kg</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Size:</div>
+                                    <div class="stat-value">Medium</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="tab-nav">
+                    <button class="tab-btn active" onclick="switchTab('activity')">My Pet Activity</button>
+                    <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Activity Tab -->
+                    <div id="activity-tab" class="tab-pane active">
+                        <h3 class="section-title">My Pet Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Premium Grooming (Small)</h4>
+                                        <p>4/25</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM89.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Basic Grooming (Small)</h4>
+                                        <p>4/25</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM69.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Bath & Brush (Small)</h4>
+                                        <p>3/15</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM45.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Basic Grooming (Small)</h4>
+                                        <p>3/14</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM69.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Basic Grooming (Small)</h4>
+                                        <p>2/24</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM69.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Basic Grooming (Small)</h4>
+                                        <p>2/14</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM69.00</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-left">
+                                    <div class="activity-icon">📅</div>
+                                    <div class="activity-info">
+                                        <h4>Bath & Brush (Small)</h4>
+                                        <p>2/2</p>
+                                    </div>
+                                </div>
+                                <div class="activity-price">RM45.00</div>
+                            </div>
+                        </div>
+                        <button class="view-history-btn">View Full History</button>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settings-tab" class="tab-pane">
+                        <h3 class="section-title">Profile Settings</h3>
+                        <form class="settings-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Pet Name</label>
+                                    <input type="text" class="form-input" value="Summer Tan">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Breed</label>
+                                    <input type="text" class="form-input" value="Shih-Poo">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Age</label>
+                                    <input type="text" class="form-input" value="8 years">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Weight</label>
+                                    <input type="text" class="form-input" value="4.1 KG">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Special Notes</label>
+                                <textarea class="form-textarea" placeholder="Any special care instructions or behavioral notes..."></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-primary">Save Changes</button>
+                                <button type="button" class="btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Summer Paws</h3>
+                    <p>Professional pet grooming services with love and care for your furry friends.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="service.html">Professional Bathing</a></li>
+                        <li><a href="service.html">Beauty Trimming</a></li>
+                        <li><a href="service.html">Nail Care</a></li>
+                        <li><a href="service.html">SPA Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="care guide.html">Care Guide</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Pet Care Avenue, Dog City, DC 12345</p>
+                    <p>📞 012 123-4567</p>
+                    <p>✉️ info@summerpaws.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Summer Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+	
+	<!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-btn" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+    </div>
+
+    <script>
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function switchTab(tabName) {
+            // Remove active class from all tabs and buttons
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Add active class to selected tab and button
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize cart badge on page load
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
+</body>
+</html>

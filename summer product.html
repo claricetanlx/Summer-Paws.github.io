@@ -1,0 +1,1006 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product Details- Summer Paws</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Product Details 1" />
+    <meta name="author" content="Summer Paws Team (CT & WSK)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --background: #fefefe;
+            --foreground: #334155;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --accent: #f59e0b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			overflow: hidden; 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-logo-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; 
+		}
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            padding: 0.5rem;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 2rem 0 1rem;
+            background: white;
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted-foreground);
+        }
+
+        .breadcrumb-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product Detail */
+        .product-detail {
+            padding: 2rem 0 5rem;
+            background: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .product-image {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-info h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .rating-text {
+            color: var(--muted-foreground);
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .product-details {
+            background: var(--muted);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        .detail-value {
+            color: var(--muted-foreground);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-btn {
+            width: 3rem;
+            height: 3rem;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .quantity-input {
+            width: 4rem;
+            height: 3rem;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .add-to-cart-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .product-features {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .features-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .features-list li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 10000;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            text-align: center;
+            color: #cbd5e1;
+        }
+		
+		/* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .product-info h1 {
+                font-size: 2rem;
+            }
+            
+            .add-to-cart-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">
+				<img src="photo/summer paws logo.png" alt="summer paws logo"/>
+				</div>
+                <span class="nav-logo-text">Summer Paws</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="summer service.html">Services</a></li>
+                <li><a href="summer booking.html">Booking</a></li>
+                <li><a href="summer shop.html" class="active">Shop</a></li>
+                <li><a href="summer care guide.html">Care Guide</a></li>
+                <li><a href="summer about.html">About</a></li>
+                <li><a href="summer member.html">Members</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="summer checkout.html" class="nav-icon">
+                    🛒
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </a>
+                <a href="summer profile.html" class="nav-icon">👤</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="summer home.html">Home</a> 
+                <span>›</span> 
+                <a href="summer shop.html">Shop</a> 
+                <span>›</span> 
+                <span id="breadcrumbProduct">Product</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-grid">
+                <div>
+                    <img id="productImage" src="" alt="" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h1 id="productName"></h1>
+                    <div class="product-price" id="productPrice"></div>
+                    <div class="product-rating">
+                        <span class="stars" id="productStars"></span>
+                        <span class="rating-text" id="productRating"></span>
+                    </div>
+                    <p class="product-description" id="productDescription"></p>
+                    
+                    <div class="product-details" id="productDetails"></div>
+                    
+                    <div class="quantity-selector">
+                        <span style="font-weight: 600;">Quantity:</span>
+                        <button class="quantity-btn" onclick="decreaseQuantity()">−</button>
+                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                    </div>
+                    
+                    <div class="add-to-cart-section">
+                        <button class="btn-add-cart" onclick="addToCart()">
+                            🛒 Add to Cart
+                        </button>
+                        <a href="summer shop.html" class="btn-secondary">← Continue Shopping</a>
+                    </div>
+                    
+                    <div class="product-features">
+                        <h3 class="features-title">Product Features</h3>
+                        <ul class="features-list" id="productFeatures">
+                            <!-- Features will be loaded dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Summer Paws</h3>
+                    <p>Professional pet grooming services with love and care for your furry friends.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="service.html">Professional Bathing</a></li>
+                        <li><a href="service.html">Beauty Trimming</a></li>
+                        <li><a href="service.html">Nail Care</a></li>
+                        <li><a href="service.html">SPA Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="care guide.html">Care Guide</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Pet Care Avenue, Dog City, DC 12345</p>
+                    <p>📞 012 123-4567</p>
+                    <p>✉️ info@summerpaws.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Summer Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+	
+	<!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-btn" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Product data (same as shop.html)
+        const allProducts = {
+            'shampoo-premium': {
+                id: 'shampoo-premium',
+                name: "Premium Dog Shampoo",
+                price: "RM24.99",
+                rating: 4.8,
+                reviews: 156,
+                description: "Our Premium Dog Shampoo is specially formulated with natural ingredients to provide gentle yet effective cleaning for all coat types. This moisturizing formula helps maintain your pet's skin health while leaving their coat soft, shiny, and beautifully scented.",
+                ingredients: "Oatmeal, Aloe Vera, Coconut Oil",
+                suitableFor: "All breeds, sensitive skin",
+                image: "https://i.ibb.co/ccbz7MFw/premium-dog-shampoo.png",
+                features: [
+                    "pH balanced for dogs",
+                    "Natural moisturizing ingredients",
+                    "Gentle on sensitive skin",
+                    "Professional groomer approved",
+                    "Long-lasting fresh scent"
+                ]
+            },
+            'shampoo-medicated': {
+                id: 'shampoo-medicated',
+                name: "Medicated Anti-Itch Shampoo",
+                price: "RM32.99",
+                rating: 4.9,
+                reviews: 89,
+                description: "Therapeutic formula designed specifically for dogs with allergies, hot spots, and skin conditions. This medicated shampoo provides relief from itching while promoting healing and preventing bacterial infections.",
+                ingredients: "Tea Tree Oil, Zinc Pyrithione, Salicylic Acid",
+                suitableFor: "Dogs with allergies, hot spots",
+                image: "https://i.ibb.co/Lz17NGZP/Medicated-Anti-Itch-Shampoo.png",
+                features: [
+                    "Veterinarian recommended",
+                    "Anti-bacterial and anti-fungal",
+                    "Soothes irritated skin",
+                    "Reduces itching and inflammation",
+                    "Safe for regular use"
+                ]
+            },
+            'conditioning-spray': {
+                id: 'conditioning-spray',
+                name: "Conditioning Spray",
+                price: "RM 18.99",
+                rating: 4.7,
+                reviews: 234,
+                description: "A hydrating, leave-in conditioning spray that softens fur, reduces tangles, and adds a healthy shine between baths.",
+                ingredients: "Argan Oil, Vitamin E, Silk Protein",
+                suitableFor: "Long-haired breeds, dry coats",
+                image: "https://i.ibb.co/Dg5nBn70/conditioning-spray.png",
+                features: [
+                    "Leave-in formula",
+					"Detangles and smooths",
+					"Restores coat shine",
+					"Fresh, clean scent",
+					"Non-greasy and fast-drying"
+                ]
+            },
+			'bath-brush': {
+				id: 'bath-brush',
+				name: "Professional Bath Brush",
+				price: "RM 15.99",
+				rating: 4.6,
+				reviews: 178,
+				description: "A durable, soft-bristled bath brush designed to gently exfoliate your dog’s skin while improving shampoo lather.",
+				ingredients: "Silicone bristles, Non-slip handle",
+				suitableFor: "All breeds",
+				image: "https://i.ibb.co/mVsjZVN6/Professional-Bath-Brush.png",
+				features: [
+					"Ergonomic handle",
+					"Stimulates skin circulation",
+					"Improves shampoo effectiveness",
+					"Easy to clean",
+					"Safe for sensitive skin"
+				]
+			},
+			'grooming-scissors': {
+				id: 'grooming-scissors',
+				name: "Professional Grooming Scissors",
+				price: "RM 89.99",
+				rating: 4.9,
+				reviews: 67,
+				description: "Stainless steel grooming scissors crafted for precision trimming around sensitive areas like face, ears, and paws.",
+				ingredients: "Japanese steel, Ergonomic handles",
+				suitableFor: "Professional groomers, experienced owners",
+				image: "https://i.ibb.co/hFCRr4rd/Professional-Grooming-Scissors.png",
+				features: [
+					"Rounded safety tips",
+					"Ergonomic non-slip grip",
+					"Sharp, durable blades",
+					"Designed for professionals",
+					"Perfect for fine detailing"
+				]
+			},
+			'slicker-brush-set': {
+				id: 'slicker-brush-set',
+				name: "Slicker Brush Set",
+				price: "RM 29.99",
+				rating: 4.7,
+				reviews: 203,
+				description: "A complete slicker brush set that gently removes tangles, loose hair, and debris while promoting healthy fur growth.",
+				ingredients: "Fine wire bristles, Comfortable grip",
+				suitableFor: "All coat types",
+				image: "https://i.ibb.co/fzQVzYyf/Slicker-Brush-Set.png",
+				features: [
+					"Reduces matting",
+					"Gentle on skin",
+					"Comfort-grip handle",
+					"Ideal for daily brushing",
+					"Stimulates natural oil production"
+				]
+			},
+			'nail-clippers-large': {
+				id: 'nail-clippers-large',
+				name: "Nail Clippers - Large Breed",
+				price: "RM 19.99",
+				rating: 4.8,
+				reviews: 145,
+				description: "Heavy-duty nail clippers made for large dogs. Built-in safety guard prevents over-trimming and accidental injury.",
+				ingredients: "Stainless steel blades, Safety lock",
+				suitableFor: "Large and giant breeds",
+				image: "https://i.ibb.co/r2RP7Prg/Nail-Clippers-Large-Breed.png",
+				features: [
+					"Precision stainless steel blades",
+					"Non-slip comfort grip",
+					"Safety stop blade",
+					"Durable and long-lasting",
+					"Includes nail file"
+				]
+			},
+			'deshedding-tool': {
+				id: 'deshedding-tool',
+				name: "De-shedding Tool",
+				price: "RM 45.99",
+				rating: 4.9,
+				reviews: 289,
+				description: "Removes loose undercoat hair efficiently, reducing shedding by up to 90% without damaging topcoat.",
+				ingredients: "Stainless steel edge, FURejector button",
+				suitableFor: "Double-coated breeds",
+				image: "https://i.ibb.co/B58hgHt4/De-shedding-Tool.png",
+				features: [
+					"Veterinarian approved",
+					"Reduces shedding",
+					"Ergonomic, non-slip handle",
+					"Safe on skin",
+					"Detachable blade for easy cleaning"
+				]
+			},
+			'dental-chew-bones': {
+				id: 'dental-chew-bones',
+				name: "Dental Chew Bones",
+				price: "RM 22.99",
+				rating: 4.6,
+				reviews: 312,
+				description: "Tasty dental chews that reduce tartar and freshen breath. Supports oral health while keeping dogs happily occupied.",
+				ingredients: "Sweet potato, Chicken, Mint extract",
+				suitableFor: "Medium to large dogs",
+				image: "https://i.ibb.co/1YvhwnjQ/Dental-Chew-Bones.png",
+				features: [
+					"Promotes oral hygiene",
+					"Natural ingredients",
+					"Grain-free formula",
+					"Long-lasting chew",
+					"No artificial flavors"
+				]
+			},
+			'training-treat-mix': {
+				id: 'training-treat-mix',
+				name: "Training Treat Mix",
+				price: "RM 16.99",
+				rating: 4.7,
+				reviews: 156,
+				description: "A variety of soft, bite-sized treats made with real meat. Perfect for reward-based training and positive reinforcement.",
+				ingredients: "Salmon, Sweet potato, Blueberries",
+				suitableFor: "Dogs with grain sensitivities",
+				image: "https://i.ibb.co/HpF666yk/Training-Treat-Mix.png",
+				features: [
+					"High protein content",
+					"Low in calories",
+					"Soft and easy to chew",
+					"Resealable pouch",
+					"No added fillers or by-products"
+				]
+			},
+			'grain-free-biscuits': {
+				id: 'grain-free-biscuits',
+				name: "Grain-Free Biscuits",
+				price: "RM 19.99",
+				rating: 4.6,
+				reviews: 42,
+				description: "Crunchy, oven-baked dog biscuits made without grains. Ideal for dogs with allergies or sensitive stomachs.",
+				ingredients: "Sweet Potato, Chickpea Flour, Coconut Oil",
+				suitableFor: "Grain-sensitive dogs",
+				image: "https://i.ibb.co/DfDXV6wK/Grain-Free-Biscuits.png",
+				features: [
+					"Grain and gluten-free",
+					"Supports digestion",
+					"Natural ingredients",
+					"Oven-baked for crunch",
+					"No artificial preservatives"
+				]
+			},
+			'holiday-grooming-package': {
+				id: 'holiday-grooming-package',
+				name: "Holiday Grooming Package",
+				price: "RM 79.99",
+				rating: 4.9,
+				reviews: 89,
+				description: "Celebrate in style with our seasonal grooming set featuring festive shampoo, paw balm, and a holiday-themed bandana.",
+				ingredients: "Shampoo, conditioner, brush, nail clippers, treats",
+				suitableFor: "Perfect gift for dog owners",
+				image: "https://i.ibb.co/2Yvnd0cf/Holiday-Grooming-Package.png",
+				features: [
+					"Limited edition",
+					"Includes grooming accessories",
+					"Perfect for holiday photos",
+					"Moisturizes and soothes skin",
+					"Festive scent and design"
+				]
+			},
+			'puppy-starter-kit': {
+				id: 'puppy-starter-kit',
+				name: "Puppy Starter Kit",
+				price: "RM 59.99",
+				rating: 4.8,
+				reviews: 134,
+				description: "The ultimate care package for new puppy parents—includes gentle shampoo, treats, toy, brush, and puppy-care guide.",
+				ingredients: "Gentle puppy shampoo, soft brush, nail clippers, treats",
+				suitableFor: "Puppies under 1 year",
+				image: "https://i.ibb.co/Mkcff6vX/Puppy-Starter-Kit.png",
+				features: [
+					"Perfect for first-time dog owners",
+					"Vet-approved items",
+					"Soft-bristle brush for gentle grooming",
+					"Educational care guide included",
+					"Great gift idea"
+				]
+			},
+			'luxury-spa-collection': {
+				id: 'luxury-spa-collection',
+				name: "Luxury Spa Collection",
+				price: "RM 129.99",
+				rating: 5.0,
+				reviews: 45,
+				description: "An indulgent spa set for pampered pups featuring aromatherapy shampoo, silk conditioner, paw butter, and plush towel.",
+				ingredients: " Organic shampoo, conditioning mask, massage oil, luxury towel",
+				suitableFor: "All breeds - luxury treatment",
+				image: "https://i.ibb.co/Z67ccdgj/Luxury-Spa-Collection.png",
+				features: [
+					"Premium grooming products",
+					"Luxury microfiber towel included",
+					"Soothing scents",
+					"Softens and hydrates coat",
+					"Makes an elegant gift set"
+				]
+			}
+        };
+
+        let currentProduct = null;
+
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Show toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Generate stars
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (hasHalfStar) {
+                stars += '☆';
+            }
+            
+            return stars;
+        }
+
+        // Quantity controls
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            const current = parseInt(input.value);
+            if (current < 10) {
+                input.value = current + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            const current = parseInt(input.value);
+            if (current > 1) {
+                input.value = current - 1;
+            }
+        }
+
+        // Add to cart
+        function addToCart() {
+            if (!currentProduct) return;
+            
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const existingItem = cart.find(item => item.id === currentProduct.id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    image: currentProduct.image,
+                    quantity: quantity
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            showToast(`${currentProduct.name} added to cart!`);
+        }
+
+        // Load product
+        function loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId || !allProducts[productId]) {
+                // Fallback to first product if no ID or invalid ID
+                currentProduct = allProducts['shampoo-premium'];
+            } else {
+                currentProduct = allProducts[productId];
+            }
+            
+            // Update page content
+            document.getElementById('breadcrumbProduct').textContent = currentProduct.name;
+            document.getElementById('productImage').src = currentProduct.image;
+            document.getElementById('productImage').alt = currentProduct.name;
+            document.getElementById('productName').textContent = currentProduct.name;
+            document.getElementById('productPrice').textContent = currentProduct.price;
+            document.getElementById('productStars').textContent = generateStars(currentProduct.rating);
+            document.getElementById('productRating').textContent = `${currentProduct.rating} (${currentProduct.reviews} reviews)`;
+            document.getElementById('productDescription').textContent = currentProduct.description;
+            
+            // Product details
+            document.getElementById('productDetails').innerHTML = `
+                <div class="detail-row">
+                    <span class="detail-label">Ingredients:</span>
+                    <span class="detail-value">${currentProduct.ingredients}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Suitable for:</span>
+                    <span class="detail-value">${currentProduct.suitableFor}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">SKU:</span>
+                    <span class="detail-value">${currentProduct.id.toUpperCase()}</span>
+                </div>
+            `;
+            
+            // Product features
+            document.getElementById('productFeatures').innerHTML = currentProduct.features.map(feature => 
+                `<li>${feature}</li>`
+            ).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProduct();
+            updateCartBadge();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Complete Guide to Dog Grooming at Home - Summer Paws</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Care Guide Article 1" />
+    <meta name="author" content="Summer Paws Team (CT & WSK)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --background: #fefefe;
+            --foreground: #334155;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --accent: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			overflow: hidden; 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.nav-logo-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; 
+		}
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            padding: 0.5rem;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Article Layout */
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--muted-foreground);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-category {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .article-body h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--foreground);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .highlight-box h4 {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .table-of-contents {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+        }
+
+        .table-of-contents a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .table-of-contents a:hover {
+            color: var(--primary);
+        }
+
+        .related-articles {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .related-article {
+            display: block;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: var(--foreground);
+            transition: all 0.3s;
+        }
+
+        .related-article:hover {
+            border-color: var(--primary);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .related-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-excerpt {
+            font-size: 0.9rem;
+            color: var(--muted-foreground);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            text-align: center;
+            color: #cbd5e1;
+        }
+		
+		/* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .article-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-content, .sidebar {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">
+				<img src="photo/summer paws logo.png" alt="summer paws logo"/>
+				</div>
+                <span class="nav-logo-text">Summer Paws</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="summer service.html">Services</a></li>
+                <li><a href="summer booking.html">Booking</a></li>
+                <li><a href="summer shop.html">Shop</a></li>
+                <li><a href="summer care guide.html" class="active">Care Guide</a></li>
+                <li><a href="summer about.html">About</a></li>
+                <li><a href="summer member.html">Members</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="summer checkout.html" class="nav-icon">
+                    🛒
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </a>
+                <a href="summer profile.html" class="nav-icon">👤</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Layout -->
+    <div class="article-layout">
+        <!-- Main Article Content -->
+        <article class="article-content">
+            <div class="breadcrumb">
+                <a href="summer home.html">Home</a> › <a href="summer care guide.html">Care Guide</a> › Complete Guide to Dog Grooming at Home
+            </div>
+
+            <header class="article-header">
+                <span class="article-category">Grooming</span>
+                <h1 class="article-title">Complete Guide to Dog Grooming at Home</h1>
+                <div class="article-meta">
+                    <div class="meta-item">
+                        <span>📅</span>
+                        <span>March 15, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>⏱️</span>
+                        <span>8 min read</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>👤</span>
+                        <span>Dr. Sarah Johnson</span>
+                    </div>
+                </div>
+            </header>
+
+            <img src="care guide/grooming at home.png" alt="Dog being groomed at home" class="article-image">
+
+            <div class="article-body">
+                <p>Grooming your dog at home can be a rewarding experience that strengthens the bond between you and your furry friend while keeping them healthy and comfortable. With the right techniques, tools, and patience, you can maintain your dog's coat, nails, and overall hygiene effectively.</p>
+
+                <h2 id="getting-started">Getting Started: Essential Tools</h2>
+                <p>Before you begin grooming your dog, it's important to have the right tools. Here's what you'll need:</p>
+                <ul>
+                    <li><strong>High-quality dog shampoo</strong> - Choose one suitable for your dog's coat type and skin sensitivity</li>
+                    <li><strong>Slicker brush or pin brush</strong> - For removing tangles and loose fur</li>
+                    <li><strong>Nail clippers</strong> - Guillotine or scissor-type clippers work well</li>
+                    <li><strong>Cotton balls and ear cleaner</strong> - For gentle ear cleaning</li>
+                    <li><strong>Towels</strong> - Several clean, absorbent towels for drying</li>
+                    <li><strong>Blow dryer</strong> - Optional, but helpful for thick-coated breeds</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>💡 Pro Tip</h4>
+                    <p>Invest in professional-grade grooming tools. They may cost more initially but will last longer and provide better results than cheap alternatives.</p>
+                </div>
+
+                <h2 id="bathing-basics">Bathing Basics</h2>
+                <p>Regular bathing is essential for your dog's health and comfort. Most dogs need a bath every 4-6 weeks, but this can vary based on their lifestyle and coat type.</p>
+
+                <h3>Step-by-Step Bathing Process</h3>
+                <ol>
+                    <li><strong>Brush first</strong> - Always brush your dog thoroughly before bathing to remove loose fur and prevent matting</li>
+                    <li><strong>Use lukewarm water</strong> - Test the temperature with your hand; it should be comfortable, not hot</li>
+                    <li><strong>Wet thoroughly</strong> - Ensure water reaches the skin, especially for thick-coated breeds</li>
+                    <li><strong>Apply shampoo</strong> - Work from neck to tail, avoiding the face initially</li>
+                    <li><strong>Massage gently</strong> - Use circular motions to work the shampoo into the coat</li>
+                    <li><strong>Rinse completely</strong> - Leftover soap can cause skin irritation</li>
+                    <li><strong>Clean the face last</strong> - Use a damp cloth with a small amount of shampoo</li>
+                </ol>
+
+                <h2 id="brushing-techniques">Brushing Techniques</h2>
+                <p>Regular brushing prevents matting, reduces shedding, and distributes natural oils throughout your dog's coat. The frequency and technique depend on your dog's coat type:</p>
+
+                <h3>Short-Haired Dogs</h3>
+                <p>Brush 2-3 times per week using a rubber brush or short-bristled brush. Focus on removing loose hair and debris.</p>
+
+                <h3>Medium-Haired Dogs</h3>
+                <p>Daily brushing is recommended using a slicker brush. Pay special attention to areas prone to matting like behind the ears and under the legs.</p>
+
+                <h3>Long-Haired Dogs</h3>
+                <p>Daily brushing is essential. Use a pin brush for the topcoat and a slicker brush for the undercoat. Work in sections to ensure thorough brushing.</p>
+
+                <div class="highlight-box">
+                    <h4>⚠️ Important</h4>
+                    <p>Never brush a wet coat as this can cause breakage and matting. Always brush when the coat is completely dry.</p>
+                </div>
+
+                <h2 id="nail-trimming">Nail Trimming Safety</h2>
+                <p>Trimming your dog's nails is crucial for their comfort and health. Overgrown nails can cause pain and affect your dog's gait.</p>
+
+                <h3>How to Trim Safely</h3>
+                <ul>
+                    <li>Use proper lighting to see the pink "quick" inside the nail</li>
+                    <li>Cut only the white tip, staying well away from the pink area</li>
+                    <li>If you accidentally cut the quick, apply styptic powder to stop bleeding</li>
+                    <li>Trim just a small amount at a time</li>
+                    <li>Reward your dog with treats throughout the process</li>
+                </ul>
+
+                <h2 id="ear-care">Ear Care and Cleaning</h2>
+                <p>Regular ear cleaning prevents infections and removes debris. Dogs with floppy ears or those who swim frequently need more frequent cleaning.</p>
+
+                <h3>Cleaning Process</h3>
+                <ol>
+                    <li>Use a veterinarian-approved ear cleaner</li>
+                    <li>Apply the cleaner to a cotton ball, never directly into the ear</li>
+                    <li>Gently wipe the visible parts of the ear</li>
+                    <li>Never insert anything deep into the ear canal</li>
+                    <li>Dry the ears thoroughly after cleaning</li>
+                </ol>
+
+                <h2 id="troubleshooting">Common Grooming Challenges</h2>
+                <p>Even experienced groomers face challenges. Here are solutions to common problems:</p>
+
+                <h3>Matted Fur</h3>
+                <p>For minor mats, work them out gently with your fingers and a detangling spray. Severe matting may require professional help or careful trimming with scissors.</p>
+
+                <h3>Anxious Dogs</h3>
+                <p>Start with short sessions and plenty of treats. Gradually increase grooming time as your dog becomes more comfortable. Consider calming aids if necessary.</p>
+
+                <h3>Water-Shy Dogs</h3>
+                <p>Introduce water gradually, starting with just wet paws. Use non-slip mats in the tub and speak in calm, reassuring tones throughout the process.</p>
+
+                <h2 id="maintenance">Creating a Routine</h2>
+                <p>Consistency is key to successful home grooming. Establish a regular schedule that works for both you and your dog:</p>
+                <ul>
+                    <li>Daily: Quick brush and teeth cleaning</li>
+                    <li>Weekly: Thorough brushing and ear check</li>
+                    <li>Bi-weekly: Nail trimming (or as needed)</li>
+                    <li>Monthly: Full bath and detailed grooming session</li>
+                </ul>
+
+                <p>Remember, grooming should be a positive experience for your dog. Take your time, be patient, and don't hesitate to seek professional help when needed. With practice, you'll both look forward to these bonding sessions!</p>
+            </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Table of Contents</h3>
+            <ul class="table-of-contents">
+                <li><a href="#getting-started">Essential Tools</a></li>
+                <li><a href="#bathing-basics">Bathing Basics</a></li>
+                <li><a href="#brushing-techniques">Brushing Techniques</a></li>
+                <li><a href="#nail-trimming">Nail Trimming Safety</a></li>
+                <li><a href="#ear-care">Ear Care and Cleaning</a></li>
+                <li><a href="#troubleshooting">Common Challenges</a></li>
+                <li><a href="#maintenance">Creating a Routine</a></li>
+            </ul>
+
+            <div class="related-articles">
+                <h3>Related Articles</h3>
+                <a href="care guide article.html?article=seasonal-care" class="related-article">
+                    <div class="related-title">Seasonal Pet Care</div>
+                    <div class="related-excerpt">Preparing for weather changes</div>
+                </a>
+                <a href="care guide article.html?article=nutrition-guide" class="related-article">
+                    <div class="related-title">Nutritional Needs</div>
+                    <div class="related-excerpt">Feeding guidelines for every life stage</div>
+                </a>
+                <a href="care guide article.html?article=dental-care" class="related-article">
+                    <div class="related-title">Dental Care</div>
+                    <div class="related-excerpt">Maintaining healthy teeth and gums</div>
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Summer Paws</h3>
+                    <p>Professional pet grooming services with love and care for your furry friends.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="service.html">Professional Bathing</a></li>
+                        <li><a href="service.html">Beauty Trimming</a></li>
+                        <li><a href="service.html">Nail Care</a></li>
+                        <li><a href="service.html">SPA Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="care guide.html">Care Guide</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Pet Care Avenue, Dog City, DC 12345</p>
+                    <p>📞 012 123-4567</p>
+                    <p>✉️ info@summerpaws.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Summer Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+	
+	<!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-btn" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+    </div>
+
+    <script>
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Smooth scroll for table of contents
+        document.querySelectorAll('.table-of-contents a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize cart badge on page load
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
+</body>
+</html>
